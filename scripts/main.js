@@ -29,7 +29,22 @@ function resetTimer() {
   timerDisplay.innerHTML = `30 `;
   counter.innerHTML = `00`;
 }
-trg.onclick = () => {
+function randomCoords() {
+  let i = 50;
+  let j = 50;
+  do {
+    i = (Math.random() * 100).toFixed();
+    j = (Math.random() * 100).toFixed();
+  } while (i > 92 || i < 10 || j < 0 || j > 92);
+  document.documentElement.style.setProperty("--x", `${i}%`);
+  document.documentElement.style.setProperty("--y", `${j}%`);
+}
+function scoreIncrement() {
+  l++;
+  if (l < 10) counter.innerHTML = `0${l}`;
+  else counter.innerHTML = `${l}`;
+}
+function startTimer() {
   if (p === 0) {
     p++;
     timer = setInterval(() => {
@@ -41,17 +56,11 @@ trg.onclick = () => {
       }
     }, 1000);
   }
+}
+trg.onclick = () => {
+  startTimer();
   changeVol();
-  let i = 50;
-  let j = 50;
-  do {
-    i = (Math.random() * 100).toFixed();
-    j = (Math.random() * 100).toFixed();
-  } while (i > 92 || i < 10 || j < 0 || j > 92);
-  document.documentElement.style.setProperty("--x", `${i}%`);
-  document.documentElement.style.setProperty("--y", `${j}%`);
-  l++;
-  if (l < 10) counter.innerHTML = `0${l}`;
-  else counter.innerHTML = `${l}`;
+  randomCoords();
+  scoreIncrement();
 };
 reset.onclick = resetTimer;
