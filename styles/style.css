@@ -45,12 +45,14 @@ body {
 
 .board {
   position: relative;
-  background-color: #ffffff;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
   height: 27em;
   width: 70em;
   overflow: hidden;
+  border: 2px solid #ddd;
+  transition: transform 0.3s;
 }
 
 .target {
@@ -123,12 +125,20 @@ body {
   gap: 0.5em;
   align-items: center;
   justify-content: center;
-  background-color: #1f1f1f;
+  background-color: #444444; /* Darker background for contrast */
   height: 50px;
   width: 150px;
   border-radius: 30px;
+  padding: 0 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
+.timer {
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: #ffffff; /* Bright white for contrast */
+  font-weight: bold;
+}
 .timer-container img {
   width: 34.5px;
   height: 34.5px;
@@ -139,12 +149,6 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 2em;
-}
-
-.timer {
-  font-size: 2rem;
-  text-transform: capitalize;
-  color: #f0f0f0;
 }
 
 .last-score {
