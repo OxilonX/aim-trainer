@@ -7,7 +7,16 @@ let l = 0;
 let p = 0;
 let seconds = 30;
 let timer;
+function changeVol() {
+  let v;
+  do {
+    v = (Math.random() * 100).toFixed();
+  } while (v < 20);
+  document.documentElement.style.setProperty("--volume", `${v}px`);
+  document.documentElement.style.setProperty("--radius", `${v}px`);
+}
 function resetTimer() {
+  document.documentElement.style.setProperty("--volume", "30px");
   p = 0;
   l = 0;
   i = 50;
@@ -32,7 +41,7 @@ trg.onclick = () => {
       }
     }, 1000);
   }
-
+  changeVol();
   let i = 50;
   let j = 50;
   do {
