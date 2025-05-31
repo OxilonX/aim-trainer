@@ -7,10 +7,11 @@ let l = 0;
 let p = 0;
 let seconds = 30;
 let timer;
+
 function changeVol() {
   let v;
   do {
-    v = (Math.random() * 100).toFixed();
+    v = (Math.random() * 50).toFixed();
   } while (v < 20);
   document.documentElement.style.setProperty("--volume", `${v}px`);
   document.documentElement.style.setProperty("--radius", `${v}px`);
