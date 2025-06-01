@@ -7,6 +7,7 @@ const board = document.querySelector(".board");
 let counter = document.getElementById("js-counter");
 let l = 0;
 let p = 0;
+let x = 1;
 let seconds = 30;
 let timer;
 
@@ -27,9 +28,8 @@ function resetTimer(vol, x, y) {
   document.documentElement.style.setProperty(vol, "30px");
   p = 0;
   l = 0;
-  i = 50;
-  document.documentElement.style.setProperty(x, `${i}%`);
-  document.documentElement.style.setProperty(y, `${i}%`);
+  document.documentElement.style.setProperty(x, `50%`);
+  document.documentElement.style.setProperty(y, `50%`);
   counter.innerHTML = `${l}`;
   clearInterval(timer);
   timer = null;
@@ -76,9 +76,26 @@ function startTimer() {
     }, 1000);
   }
 }
+function heartRetry() {
+  for (let i = 1; i <= 3; i++) {
+    let heart = document.querySelector(`.try-${i}`);
+    heart.classList.remove("hitten");
+  }
+  x = 1;
+}
 board.onclick = (event) => {
   if (event.target === board) {
     scoreDecreament();
+  }
+  if (event.target === board && x < 4) {
+    let heart = document.querySelector(`.try-${x}`);
+    x++;
+    heart.classList.add("hitten");
+  }
+  if (x === 4) {
+    resetTimer(`--volume`, `--x`, `--y`);
+    resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+    heartRetry();
   }
 };
 secTrg.onclick = () => {
@@ -97,4 +114,5 @@ trg.onclick = () => {
 reset.onclick = () => {
   resetTimer(`--volume`, `--x`, `--y`);
   resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+  heartRetry();
 };
