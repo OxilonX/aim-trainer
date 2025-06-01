@@ -3,6 +3,7 @@ const trg = document.querySelector(".target");
 const timerDisplay = document.querySelector(".timer-display");
 const lastScore = document.querySelector(".last-score");
 const secTrg = document.querySelector(".sec-target");
+const board = document.querySelector(".board");
 let counter = document.getElementById("js-counter");
 let l = 0;
 let p = 0;
@@ -37,7 +38,7 @@ function resetTimer(vol, x, y) {
   counter.innerHTML = `00`;
 }
 
-function randomCoords(x, y, elemnt) {
+function randomCoords(x, y, element) {
   let i = 50;
   let j = 50;
   do {
@@ -47,7 +48,10 @@ function randomCoords(x, y, elemnt) {
 
   document.documentElement.style.setProperty(`${x}`, `${i}%`);
   document.documentElement.style.setProperty(`${y}`, `${j}%`);
-  elemnt.classList.toggle("popup");
+  element.classList.add("popup");
+  setTimeout(() => {
+    element.classList.remove("popup");
+  }, 300);
 }
 function scoreIncrement() {
   l++;
@@ -72,10 +76,15 @@ function startTimer() {
     }, 1000);
   }
 }
+board.onclick = (event) => {
+  if (event.target === board) {
+    scoreDecreament();
+  }
+};
 secTrg.onclick = () => {
   scoreDecreament();
   changeVol(`--sec-volume`, `--sec-radius`);
-  randomCoords(`--sec-x`, `--sec-y`);
+  randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
 trg.onclick = () => {
   startTimer();
@@ -83,7 +92,7 @@ trg.onclick = () => {
   changeVol(`--volume`, `--radius`);
   changeVol(`--sec-volume`, `--sec-radius`);
   randomCoords(`--x`, `--y`, trg);
-  randomCoords(`--sec-x`, `--sec-y`);
+  randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
 reset.onclick = () => {
   resetTimer(`--volume`, `--x`, `--y`);
