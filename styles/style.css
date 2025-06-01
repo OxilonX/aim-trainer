@@ -180,3 +180,26 @@ body {
   color: #f0f0f0;
   font-size: 2rem;
 }
+.coming-soon {
+  display: none;
+  font-size: 3rem;
+  color: whitesmoke;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+@media (max-width: 1235px) {
+  .board {
+    width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  .container {
+    display: none;
+  }
+
+  .coming-soon {
+    display: inline-block;
+    text-align: center;
+    margin-top: 35%;
+  }
+}
