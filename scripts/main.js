@@ -93,6 +93,7 @@ board.onclick = (event) => {
     heart.classList.add("hitten");
   }
   if (x === 4) {
+    lastScore.innerHTML = `Your last score: ${l}`;
     resetTimer(`--volume`, `--x`, `--y`);
     resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
     heartRetry();
@@ -112,6 +113,7 @@ trg.onclick = () => {
   randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
 reset.onclick = () => {
+  lastScore.innerHTML = `Your last score: ${l}`;
   resetTimer(`--volume`, `--x`, `--y`);
   resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
   heartRetry();
