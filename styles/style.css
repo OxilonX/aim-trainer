@@ -91,6 +91,7 @@ body {
 }
 
 .sec-target {
+  display: none;
   position: absolute;
   top: var(--sec-y);
   right: var(--sec-x);
