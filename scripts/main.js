@@ -1,4 +1,4 @@
-/*const reset = document.querySelector(".reset");
+const reset = document.querySelector(".reset");
 const trg = document.querySelector(".target");
 const timerDisplay = document.querySelector(".timer-display");
 const lastScore = document.querySelector(".last-score");
@@ -118,4 +118,3 @@ reset.onclick = () => {
   resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
   heartRetry();
 };
-*/
