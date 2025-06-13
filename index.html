@@ -12,6 +12,12 @@
     <div class="container">
       <div class="view-port">
         <div class="score-container">
+          <div class="themes-container">
+            <button class="toggle">
+              <span class="toggle-switch"></span>
+            </button>
+          </div>
+
           <h1 class="score">score : <span id="js-counter">00</span></h1>
           <div class="trys">
             <button class="try try-1"></button>
@@ -20,12 +26,15 @@
           </div>
         </div>
 
-        <div class="board"></div>
+        <div class="board">
+          <div class="target"></div>
+          <div class="sec-target"></div>
+        </div>
         <div class="reset-timer">
           <button class="reset js-reset-score">reset</button>
           <div class="timer-container">
             <div class="timer timer-display">30</div>
-            <img src="icons/icons8-timer-64.png" alt="" />
+            <img class="timer-icon" src="icons/icons8-timer-60.png" alt="" />
           </div>
           <div class="last-score"></div>
         </div>

@@ -4,10 +4,14 @@ const timerDisplay = document.querySelector(".timer-display");
 const lastScore = document.querySelector(".last-score");
 const secTrg = document.querySelector(".sec-target");
 const board = document.querySelector(".board");
+const toggle = document.querySelector(".toggle");
+const toggleSwitch = document.querySelector(".toggle-switch");
+const body = document.body;
+const timerIcon = document.querySelector(".timer-icon");
 let counter = document.getElementById("js-counter");
-let l = 0;
-let p = 0;
-let x = 1;
+let l = 0; // Score
+let p = 0; // Timer started
+let x = 1; // Hearts used
 let seconds = 30;
 let timer;
 
@@ -16,6 +20,7 @@ document.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
+
 function changeVol(vol, rad) {
   let v;
   do {
@@ -24,45 +29,45 @@ function changeVol(vol, rad) {
   document.documentElement.style.setProperty(vol, `${v}px`);
   document.documentElement.style.setProperty(rad, `${v}px`);
 }
+
 function resetTimer(vol, x, y) {
   document.documentElement.style.setProperty(vol, "30px");
   p = 0;
   l = 0;
   document.documentElement.style.setProperty(x, `50%`);
   document.documentElement.style.setProperty(y, `50%`);
-  counter.innerHTML = `${l}`;
+  counter.innerHTML = `00`;
   clearInterval(timer);
   timer = null;
   seconds = 30;
-  timerDisplay.innerHTML = `30 `;
-  counter.innerHTML = `00`;
+  timerDisplay.innerHTML = `30`;
 }
 
 function randomCoords(x, y, element) {
-  let i = 50;
-  let j = 50;
+  let i, j;
   do {
     i = (Math.random() * 100).toFixed();
     j = (Math.random() * 100).toFixed();
   } while (i > 92 || i < 10 || j < 0 || j > 92);
 
-  document.documentElement.style.setProperty(`${x}`, `${i}%`);
-  document.documentElement.style.setProperty(`${y}`, `${j}%`);
+  document.documentElement.style.setProperty(x, `${i}%`);
+  document.documentElement.style.setProperty(y, `${j}%`);
   element.classList.add("popup");
   setTimeout(() => {
     element.classList.remove("popup");
   }, 300);
 }
+
 function scoreIncrement() {
   l++;
-  if (l < 10) counter.innerHTML = `0${l}`;
-  else counter.innerHTML = `${l}`;
+  counter.innerHTML = l < 10 ? `0${l}` : `${l}`;
 }
-function scoreDecreament() {
+
+function scoreDecrement() {
   l = Math.max(0, l - 1);
-  if (l < 10) counter.innerHTML = `0${l}`;
-  else counter.innerHTML = `${l}`;
+  counter.innerHTML = l < 10 ? `0${l}` : `${l}`;
 }
+
 function startTimer() {
   if (p === 0) {
     p++;
@@ -70,12 +75,15 @@ function startTimer() {
       seconds--;
       timerDisplay.innerHTML = `${seconds} `;
       if (seconds <= 0) {
-        lastScore.innerHTML = `Your last score :${l}`;
-        resetTimer();
+        lastScore.innerHTML = `Your last score: ${l}`;
+        resetTimer(`--volume`, `--x`, `--y`);
+        resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+        heartRetry();
       }
     }, 1000);
   }
 }
+
 function heartRetry() {
   for (let i = 1; i <= 3; i++) {
     let heart = document.querySelector(`.try-${i}`);
@@ -83,9 +91,10 @@ function heartRetry() {
   }
   x = 1;
 }
+
 board.onclick = (event) => {
   if (event.target === board) {
-    scoreDecreament();
+    scoreDecrement();
   }
   if (event.target === board && x < 4) {
     let heart = document.querySelector(`.try-${x}`);
@@ -99,11 +108,28 @@ board.onclick = (event) => {
     heartRetry();
   }
 };
+toggle.onclick = () => {
+  toggleSwitch.classList.toggle("active");
+  toggle.classList.toggle("active");
+  if (toggle.classList.contains("active")) {
+    body.classList.add("darkmode");
+    timerIcon.src = "icons/icons8-timer-64.png";
+    timerIcon.style.width = "34.5px";
+    timerIcon.style.height = "34.5px";
+  } else {
+    body.classList.remove("darkmode");
+    timerIcon.src = "icons/icons8-timer-60.png";
+    timerIcon.style.width = "30px";
+    timerIcon.style.height = "30px";
+  }
+};
+
 secTrg.onclick = () => {
-  scoreDecreament();
+  scoreDecrement();
   changeVol(`--sec-volume`, `--sec-radius`);
   randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
+
 trg.onclick = () => {
   startTimer();
   scoreIncrement();
@@ -112,6 +138,7 @@ trg.onclick = () => {
   randomCoords(`--x`, `--y`, trg);
   randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
+
 reset.onclick = () => {
   lastScore.innerHTML = `Your last score: ${l}`;
   resetTimer(`--volume`, `--x`, `--y`);

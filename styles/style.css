@@ -9,8 +9,22 @@
   --sec-volume: 30px;
   --sec-y: 50%;
   --sec-x: 50%;
-}
+  /*light theme body*/
+  --board-color: #f0f0f0;
+  --bg-color: #2e2e2e;
+  --board-border-color: #ddd;
+  --score-color: #e0e0e0;
 
+  /*light theme buttons*/
+  --reset-color: rgb(56, 56, 56);
+}
+.darkmode {
+  --board-color: rgb(56, 56, 56);
+  --bg-color: #f0f0f0;
+  --board-border-color: rgb(56, 56, 56);
+  --score-color: rgb(56, 56, 56);
+  --reset-color: #f0f0f0;
+}
 * {
   padding: 0;
   margin: 0;
@@ -20,7 +34,7 @@
 
 body {
   max-height: 100vh;
-  background-color: #2c2c2c;
+  background-color: var(--bg-color);
   font-family: "Arial", sans-serif;
   color: #f0f0f0;
 }
@@ -39,12 +53,51 @@ body {
 .score-container {
   position: relative;
   display: flex;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  gap: 21em;
+  width: 70em;
+}
+.themes-container {
+  position: relative;
+  display: flex;
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+  height: 30px;
+  width: 65px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+.toggle-switch {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 26px;
+  width: 26px;
+  border-radius: 20px;
+  background: #4d4d4d;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.toggle-switch.active {
+  position: absolute;
+  top: 2px;
+  left: 38px;
+  right: 2px;
+  height: 26px;
+  width: 26px;
+  border-radius: 20px;
+  background: white;
+}
+.toggle.active {
+  background-color: #4d4d4d;
 }
 .score {
-  color: #e0e0e0;
+  color: var(--score-color);
   font-size: 2.5rem;
   text-transform: capitalize;
 }
@@ -52,8 +105,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5em;
-  position: absolute;
-  right: 120px;
 }
 .try {
   border: 2px solid black;
@@ -67,36 +118,41 @@ body {
 }
 .board {
   position: relative;
-  background-color: #f0f0f0;
+  background-color: var(--board-color);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   border-radius: 15px;
   height: 27em;
   width: 70em;
   overflow: hidden;
-  border: 2px solid #ddd;
+  border: 2px solid var(--board-border-color);
   transition: transform 0.3s;
   z-index: 1;
 }
-.board button {
-  width: 25px;
-  height: 25px;
-  border-radius: 50px;
-  background-color: red;
+
+.target {
+  position: absolute;
+  top: var(--y);
+  right: var(--x);
+  width: var(--volume);
+  height: var(--volume);
+  border-radius: var(--radius);
+  background-color: var(--target-color);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 4;
 }
 
 .sec-target {
   position: absolute;
-  top: 50px;
-  right: 50px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50px;
-  background-color: red;
+  top: var(--sec-y);
+  right: var(--sec-x);
+  width: var(--sec-volume);
+  height: var(--sec-volume);
+  border-radius: var(--sec-radius);
+  background-color: var(--sec-target-color);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 4;
+  z-index: 2;
 }
+
 @keyframes popup {
   0% {
     transform: scale(0);
@@ -119,7 +175,8 @@ body {
 }
 
 .reset {
-  background-color: #ffffff;
+  background-color: var(--score-color);
+  color: var(--reset-color);
   user-select: none;
   cursor: pointer;
   font-size: 2rem;
@@ -134,8 +191,8 @@ body {
 .reset:hover {
   background: transparent;
   box-shadow: none;
-  border: 3px solid #ffffff;
-  color: #f0f0f0;
+  border: 3px solid var(--score-color);
+  color: var(--score-color);
   text-shadow: none;
 }
 
@@ -144,23 +201,25 @@ body {
   gap: 0.5em;
   align-items: center;
   justify-content: center;
-  background-color: #444444;
+  background-color: var(--score-color);
   height: 50px;
   width: 150px;
   border-radius: 30px;
   padding: 0 10px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: ease-in 0.2s;
 }
 
 .timer {
   font-size: 2rem;
   text-transform: capitalize;
-  color: #ffffff;
+  color: var(--reset-color);
   font-weight: bold;
+  transition: ease-in 0.2s;
 }
 .timer-container img {
-  width: 34.5px;
-  height: 34.5px;
+  width: 30px;
+  height: 30px;
 }
 
 .reset-timer {
@@ -172,7 +231,7 @@ body {
 
 .last-score {
   z-index: 10;
-  color: #f0f0f0;
+  color: var(--score-color);
   font-size: 2rem;
 }
 .coming-soon {
