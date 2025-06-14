@@ -129,6 +129,13 @@ secTrg.onclick = () => {
   changeVol(`--sec-volume`, `--sec-radius`);
   randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
+let autoRandomCoords;
+function startAutoRandomCoords() {
+  autoRandomCoords = setInterval(() => {
+    randomCoords(`--x`, `--y`, trg);
+    randomCoords(`--sec-x`, `--sec-y`, secTrg);
+  }, 1000);
+}
 
 trg.onclick = () => {
   startTimer();
@@ -136,6 +143,8 @@ trg.onclick = () => {
   changeVol(`--volume`, `--radius`);
   changeVol(`--sec-volume`, `--sec-radius`);
   randomCoords(`--x`, `--y`, trg);
+  clearInterval(autoRandomCoords);
+  startAutoRandomCoords();
   randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
 
@@ -143,5 +152,6 @@ reset.onclick = () => {
   lastScore.innerHTML = `Your last score: ${l}`;
   resetTimer(`--volume`, `--x`, `--y`);
   resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+  clearInterval(autoRandomCoords);
   heartRetry();
 };

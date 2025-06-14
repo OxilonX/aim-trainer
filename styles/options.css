@@ -1,0 +1,141 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+body {
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1d1d1d;
+  font-family: "Arial", sans-serif;
+  color: #f0f0f0;
+}
+ul {
+  list-style: none;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 50em;
+  margin: auto;
+  margin-top: 1em;
+}
+h1 {
+  text-align: center;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.nested-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.option-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.option-title h2 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: #fffafa;
+}
+.option-title img {
+  width: 27.5px;
+}
+.modes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.modes button {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1d1d1d;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.easy {
+  background-color: #28a745;
+}
+.normal {
+  background-color: #ffa500;
+}
+.hard {
+  background-color: #ff5733;
+}
+.easy:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.normal:hover {
+  background-color: #e69500;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hard:hover {
+  background-color: #c30025;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.easy:active {
+  transform: scale(0.95);
+}
+
+.normal:active {
+  transform: scale(0.95);
+}
+
+.hard:active {
+  transform: scale(0.95);
+}
+.active-mode {
+  transform: scale(1.2);
+  margin: 0 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.sounds {
+  justify-content: space-around;
+}
+
+.coming-soon {
+  display: none;
+  font-size: 3rem;
+  color: whitesmoke;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+@media (max-width: 1235px) {
+  .board {
+    width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  .container {
+    display: none;
+  }
+
+  .coming-soon {
+    display: inline-block;
+    text-align: center;
+    margin-top: 35%;
+  }
+}
