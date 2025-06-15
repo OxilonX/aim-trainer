@@ -10,7 +10,7 @@
   <body>
     <h1 class="coming-soon">Coming Soon on smaller devices ...</h1>
     <div class="container">
-      <h1>options</h1>
+      <h1>Settings</h1>
       <section class="options">
         <ul class="modes">
           <li class="option-title">
@@ -23,27 +23,63 @@
             <button class="hard">hard</button>
           </li>
         </ul>
-        <ul class="sounds">
-          <li class="sfx">
+        <ul class="duration">
+          <li class="option-title">
+            <img src="../icons/icons8-clock-50.png" alt="" />
+            <h2>round duration :</h2>
+          </li>
+          <li class="nested-options">
+            <button class="time-settings">30s</button>
+            <button class="time-settings">60s</button>
+            <button class="time-settings">90s</button>
+            <button class="time-settings">120s</button>
+          </li>
+        </ul>
+        <ul class="toggle-settings-container">
+          <li class="hearts toggle-settings">
+            <div class="option-title">
+              <img src="../icons/icons8-heart-50.png" alt="" />
+              <h2>hearts mode :</h2>
+            </div>
+            <div class="toggle-container">
+              <div class="toggle"></div>
+              <div class="toggle-switch"></div>
+            </div>
+          </li>
+          <li class="enemy toggle-settings">
+            <div class="option-title">
+              <img src="../icons/icons8-foul-50.png" alt="" />
+              <h2>penalty target :</h2>
+            </div>
+            <div class="toggle-container">
+              <div class="toggle"></div>
+              <div class="toggle-switch"></div>
+            </div>
+          </li>
+          <li class="sfx toggle-settings">
             <div class="option-title">
               <img src="../icons/icons8-sound-50.png" alt="" />
-              <h2>sfx</h2>
+              <h2>sfx :</h2>
             </div>
             <div class="toggle-container">
-              <div class="toggle"></div>
-              <div class="toggle-switch"></div>
+              <div class="toggle active"></div>
+              <div class="toggle-switch active"></div>
             </div>
           </li>
-          <li class="music">
+          <li class="music toggle-settings">
             <div class="option-title">
               <img src="../icons/icons8-musical-note-50.png" alt="" />
-              <h2>music</h2>
+              <h2>music :</h2>
             </div>
             <div class="toggle-container">
-              <div class="toggle"></div>
-              <div class="toggle-switch"></div>
+              <div class="toggle active"></div>
+              <div class="toggle-switch active"></div>
             </div>
           </li>
+          <div class="start-container">
+            <button class="start">start</button>
+            <button class="reset">reset</button>
+          </div>
         </ul>
       </section>
     </div>
