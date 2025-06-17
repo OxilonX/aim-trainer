@@ -99,17 +99,12 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.easy.active {
-  transform: scale(0.95);
-}
-
+.easy.active,
+.hard.active,
 .normal.active {
-  transform: scale(0.95);
+  transform: scale(1.15);
 }
 
-.hard.active {
-  transform: scale(0.95);
-}
 .active-mode {
   transform: scale(1.2);
   margin: 0 10px;
@@ -188,9 +183,14 @@ h1 {
 }
 
 .duration button.duration-active {
-  background-color: #1d1d1d;
-  color: #fffafa;
-  transform: scale(0.95);
+  background-color: #fffafa;
+  color: #1d1d1d;
+  transform: scale(1.15);
+}
+.duration button:hover {
+  background-color: #fffafa;
+  color: #1d1d1d;
+  border-color: #1d1d1d;
 }
 .start-container {
   display: flex;

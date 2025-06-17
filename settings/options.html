@@ -19,7 +19,7 @@
           </li>
           <li class="nested-options">
             <button class="easy">easy</button>
-            <button class="normal">normal</button>
+            <button class="normal active">normal</button>
             <button class="hard">hard</button>
           </li>
         </ul>
@@ -29,10 +29,10 @@
             <h2>round duration :</h2>
           </li>
           <li class="nested-options">
-            <button class="time-settings">30s</button>
-            <button class="time-settings">60s</button>
-            <button class="time-settings">90s</button>
-            <button class="time-settings">120s</button>
+            <button class="time-settings js-dur-30">30s</button>
+            <button class="time-settings js-dur-60 duration-active">60s</button>
+            <button class="time-settings js-dur-90">90s</button>
+            <button class="time-settings js-dur-120">120s</button>
           </li>
         </ul>
         <ul class="toggle-settings-container">
@@ -41,9 +41,9 @@
               <img src="../icons/icons8-heart-50.png" alt="" />
               <h2>hearts mode :</h2>
             </div>
-            <div class="toggle-container">
-              <div class="toggle"></div>
-              <div class="toggle-switch"></div>
+            <div class="toggle-container toggle-container-1">
+              <div class="toggle js-toggle-1"></div>
+              <div class="toggle-switch js-switch-1"></div>
             </div>
           </li>
           <li class="enemy toggle-settings">
@@ -51,9 +51,9 @@
               <img src="../icons/icons8-foul-50.png" alt="" />
               <h2>penalty target :</h2>
             </div>
-            <div class="toggle-container">
-              <div class="toggle"></div>
-              <div class="toggle-switch"></div>
+            <div class="toggle-container toggle-container-2">
+              <div class="toggle js-toggle-2"></div>
+              <div class="toggle-switch js-switch-2"></div>
             </div>
           </li>
           <li class="sfx toggle-settings">
@@ -61,9 +61,9 @@
               <img src="../icons/icons8-sound-50.png" alt="" />
               <h2>sfx :</h2>
             </div>
-            <div class="toggle-container">
-              <div class="toggle active"></div>
-              <div class="toggle-switch active"></div>
+            <div class="toggle-container toggle-container-3">
+              <div class="toggle js-toggle-3 active"></div>
+              <div class="toggle-switch js-switch-3 active"></div>
             </div>
           </li>
           <li class="music toggle-settings">
@@ -71,9 +71,9 @@
               <img src="../icons/icons8-musical-note-50.png" alt="" />
               <h2>music :</h2>
             </div>
-            <div class="toggle-container">
-              <div class="toggle active"></div>
-              <div class="toggle-switch active"></div>
+            <div class="toggle-container toggle-container-4">
+              <div class="toggle js-toggle-4 active"></div>
+              <div class="toggle-switch js-switch-4 active"></div>
             </div>
           </li>
           <div class="start-container">
@@ -83,6 +83,6 @@
         </ul>
       </section>
     </div>
+    <script src="/scripts/options.js"></script>
   </body>
-  <script src="/scripts/options.js"></script>
 </html>

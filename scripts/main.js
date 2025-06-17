@@ -9,12 +9,16 @@ const toggleSwitch = document.querySelector(".toggle-switch");
 const body = document.body;
 const timerIcon = document.querySelector(".timer-icon");
 let counter = document.getElementById("js-counter");
+const userOptions = JSON.parse(localStorage.getItem("userOptions"));
+const mode = userOptions.mode;
+const duration = userOptions.duration;
+const 
 let l = 0; // Score
 let p = 0; // Timer started
 let x = 1; // Hearts used
 let seconds = 30;
 let timer;
-
+const userOptions = JSON.parse(localStorage.getItem("userOptions"));
 document.addEventListener("keydown", function (event) {
   if (event.code === "Space") {
     event.preventDefault();
