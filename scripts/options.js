@@ -50,14 +50,15 @@ function pickDuration(element) {
 }
 function toggleOptions(element, elementSwitch, option) {
   if (element.classList.contains("active")) {
+    option = false;
     element.classList.remove("active");
     elementSwitch.classList.remove("active");
-    option = true;
   } else {
+    option = true;
     element.classList.add("active");
     elementSwitch.classList.add("active");
-    option = false;
   }
+  return option;
 }
 function resetToDeffaultOptions() {
   for (i = 30; i < 150; i += 30) {
@@ -82,20 +83,22 @@ dur120Button.onclick = () => {
   duration = 120;
 };
 heartsSwitch.onclick = () => {
-  toggleOptions(heartsToggle, heartsSwitch, hearts);
+  hearts = toggleOptions(heartsToggle, heartsSwitch, hearts);
+  console.log(hearts);
 };
 penaltySwitch.onclick = () => {
-  toggleOptions(penaltyToggle, penaltySwitch, penalty);
+  penalty = toggleOptions(penaltyToggle, penaltySwitch, penalty);
 };
 
 sfxSwitch.onclick = () => {
-  toggleOptions(sfxToggle, sfxSwitch, sfx);
+  sfx = toggleOptions(sfxToggle, sfxSwitch, sfx);
 };
 musicSwitch.onclick = () => {
-  toggleOptions(musicToggle, musicSwitch, music);
+  music = toggleOptions(musicToggle, musicSwitch, music);
 };
 
 reset.onclick = () => {
+  resetToDeffaultOptions();
   heartsToggle.classList.remove("active");
   heartsSwitch.classList.remove("active");
   penaltyToggle.classList.remove("active");

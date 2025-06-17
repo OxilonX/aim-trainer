@@ -10,15 +10,41 @@ const body = document.body;
 const timerIcon = document.querySelector(".timer-icon");
 let counter = document.getElementById("js-counter");
 const userOptions = JSON.parse(localStorage.getItem("userOptions"));
+console.log(userOptions);
 const mode = userOptions.mode;
 const duration = userOptions.duration;
-const 
+const hearts = userOptions.hearts;
+const penalty = userOptions.penalty;
+const sfx = userOptions.sfx;
+const music = userOptions.music;
+let genSec;
+let maxVol;
+let minVol;
+function applyMode() {
+  if (mode === 1) {
+    genSec = 1800;
+    maxVol = 50;
+    minVol = 20;
+  } else if (mode === 2) {
+    genSec = 1200;
+    maxVol = 40;
+    minVol = 20;
+  } else {
+    genSec = 750;
+    maxVol = 30;
+    minVol = 18;
+  }
+}
+applyMode();
+if (!hearts) {
+  document.querySelector(".trys").innerHTML = "";
+}
 let l = 0; // Score
 let p = 0; // Timer started
 let x = 1; // Hearts used
-let seconds = 30;
+let seconds = duration;
 let timer;
-const userOptions = JSON.parse(localStorage.getItem("userOptions"));
+timerDisplay.innerHTML = duration;
 document.addEventListener("keydown", function (event) {
   if (event.code === "Space") {
     event.preventDefault();
@@ -29,12 +55,13 @@ function changeVol(vol, rad) {
   let v;
   do {
     v = (Math.random() * 50).toFixed();
-  } while (v < 20);
+  } while (v > maxVol || v < minVol);
   document.documentElement.style.setProperty(vol, `${v}px`);
-  document.documentElement.style.setProperty(rad, `${v}px`);
+  document.documentElement.style.setProperty(rad, `200px`);
 }
 
 function resetTimer(vol, x, y) {
+  clearInterval(autoRandomCoords);
   document.documentElement.style.setProperty(vol, "30px");
   p = 0;
   l = 0;
@@ -43,8 +70,8 @@ function resetTimer(vol, x, y) {
   counter.innerHTML = `00`;
   clearInterval(timer);
   timer = null;
-  seconds = 30;
-  timerDisplay.innerHTML = `30`;
+  seconds = duration;
+  timerDisplay.innerHTML = duration.toString();
 }
 
 function randomCoords(x, y, element) {
@@ -81,7 +108,9 @@ function startTimer() {
       if (seconds <= 0) {
         lastScore.innerHTML = `Your last score: ${l}`;
         resetTimer(`--volume`, `--x`, `--y`);
-        resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+        if (penalty) {
+          resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+        }
         heartRetry();
       }
     }, 1000);
@@ -95,8 +124,7 @@ function heartRetry() {
   }
   x = 1;
 }
-
-board.onclick = (event) => {
+function missClick(event) {
   if (event.target === board) {
     scoreDecrement();
   }
@@ -108,8 +136,16 @@ board.onclick = (event) => {
   if (x === 4) {
     lastScore.innerHTML = `Your last score: ${l}`;
     resetTimer(`--volume`, `--x`, `--y`);
-    resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+    if (penalty) {
+      resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+    }
     heartRetry();
+  }
+}
+
+board.onclick = (event) => {
+  if (hearts === true && seconds < duration - 1) {
+    missClick(event);
   }
 };
 toggle.onclick = () => {
@@ -130,32 +166,42 @@ toggle.onclick = () => {
 
 secTrg.onclick = () => {
   scoreDecrement();
-  changeVol(`--sec-volume`, `--sec-radius`);
-  randomCoords(`--sec-x`, `--sec-y`, secTrg);
+  if (penalty) {
+    randomCoords(`--sec-x`, `--sec-y`, secTrg);
+    changeVol(`--sec-volume`, `--sec-radius`);
+  }
 };
 let autoRandomCoords;
 function startAutoRandomCoords() {
   autoRandomCoords = setInterval(() => {
     randomCoords(`--x`, `--y`, trg);
-    randomCoords(`--sec-x`, `--sec-y`, secTrg);
-  }, 1000);
+    changeVol(`--volume`, `--radius`);
+
+    if (penalty) {
+      randomCoords(`--sec-x`, `--sec-y`, secTrg);
+    }
+  }, genSec);
 }
 
 trg.onclick = () => {
+  if (penalty) {
+    changeVol(`--sec-volume`, `--sec-radius`);
+    randomCoords(`--sec-x`, `--sec-y`, secTrg);
+  }
   startTimer();
   scoreIncrement();
-  changeVol(`--volume`, `--radius`);
-  changeVol(`--sec-volume`, `--sec-radius`);
   randomCoords(`--x`, `--y`, trg);
+  changeVol(`--volume`, `--radius`);
   clearInterval(autoRandomCoords);
   startAutoRandomCoords();
-  randomCoords(`--sec-x`, `--sec-y`, secTrg);
 };
 
 reset.onclick = () => {
   lastScore.innerHTML = `Your last score: ${l}`;
   resetTimer(`--volume`, `--x`, `--y`);
-  resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+  if (penalty) {
+    resetTimer(`--sec-volume`, `--sec-x`, `--sec-y`);
+  }
   clearInterval(autoRandomCoords);
   heartRetry();
 };
