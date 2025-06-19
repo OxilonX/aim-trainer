@@ -124,5 +124,5 @@ start.onclick = () => {
 
   localStorage.setItem("userOptions", JSON.stringify(userInput));
 
-  window.location.href = "../options.html";
+  window.location.href = "/options.html";
 };
