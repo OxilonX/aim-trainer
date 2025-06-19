@@ -10,7 +10,6 @@ const body = document.body;
 const timerIcon = document.querySelector(".timer-icon");
 let counter = document.getElementById("js-counter");
 const userOptions = JSON.parse(localStorage.getItem("userOptions"));
-console.log(userOptions);
 const mode = userOptions.mode;
 const duration = userOptions.duration;
 const hearts = userOptions.hearts;
@@ -44,7 +43,7 @@ let p = 0; // Timer started
 let x = 1; // Hearts used
 let seconds = duration;
 let timer;
-timerDisplay.innerHTML = duration;
+timerDisplay.innerHTML = duration.toString();
 document.addEventListener("keydown", function (event) {
   if (event.code === "Space") {
     event.preventDefault();
