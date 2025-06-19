@@ -8,6 +8,7 @@ const toggle = document.querySelector(".toggle");
 const toggleSwitch = document.querySelector(".toggle-switch");
 const body = document.body;
 const timerIcon = document.querySelector(".timer-icon");
+const backButton = document.querySelector(".back-button");
 let counter = document.getElementById("js-counter");
 const userOptions = JSON.parse(localStorage.getItem("userOptions"));
 const mode = userOptions.mode;
@@ -153,11 +154,13 @@ toggle.onclick = () => {
   if (toggle.classList.contains("active")) {
     body.classList.add("darkmode");
     timerIcon.src = "icons/icons8-timer-64.png";
+    backButton.src = "icons/icons8-back-arrow-50 -black.png";
     timerIcon.style.width = "34.5px";
     timerIcon.style.height = "34.5px";
   } else {
     body.classList.remove("darkmode");
     timerIcon.src = "icons/icons8-timer-60.png";
+    backButton.src = "icons/icons8-back-arrow-50.png";
     timerIcon.style.width = "30px";
     timerIcon.style.height = "30px";
   }
@@ -194,7 +197,9 @@ trg.onclick = () => {
   clearInterval(autoRandomCoords);
   startAutoRandomCoords();
 };
-
+backButton.onclick = () => {
+  window.location.href = "index.html";
+};
 reset.onclick = () => {
   lastScore.innerHTML = `Your last score: ${l}`;
   resetTimer(`--volume`, `--x`, `--y`);

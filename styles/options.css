@@ -59,6 +59,16 @@ body {
   gap: 21em;
   width: 70em;
 }
+.back-button-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: -100px;
+}
+.back-button {
+  width: 34.8px;
+  cursor: pointer;
+}
 .themes-container {
   position: relative;
   display: flex;
